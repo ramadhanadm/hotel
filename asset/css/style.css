@@ -1,0 +1,71 @@
+h1 {
+    text-align: center;
+    text-decoration-line: underline;
+    margin-top: 5px;
+}
+
+#form-post {
+    background: #f2f2f2 center;
+    margin: 5px;
+}
+
+#form-post h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large 20px;
+    margin-left: 15px;
+    padding-top: 20px;
+}
+
+#form-post .input {
+    padding: 5px 10px;
+    border: 10px solid #ddd;
+    width: 99%;
+    font: 15px arial;
+    line-height: 25px;
+}
+
+#form-post .submit {
+    margin: 10px 10px;
+    background: linear-gradient(#f2f2f2, #ccc);
+    border: 1px solid #ddd;
+    border-radius: 2px;
+    box-shadow: 0 0 3px #ddd;
+}
+
+#form-post .submit:hover {
+    background: linear-gradient(#ccc, #f2f2f2);
+    box-shadow: 0;
+}
+
+#tampil-tweet {
+    border-bottom: 1px solid #ddd;
+    overflow: hidden;
+    margin-top: 50px;
+}
+
+#tampil-tweet #box-tweet {
+    overflow: hidden;
+}
+
+#tampil-tweet #box-tweet .atas {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+#tampil-tweet #box-tweet .atas .foto {
+    float: left;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+    border: 1px solid #ddd;
+}
+
+#tampil-tweet #box-tweet .atas .foto img {
+    width: 100%;
+}
+
+#tampil-tweet #box-tweet .atas .nama {
+    margin-left: 10px;
+    float: left;
+    font: 14px arial;
+}

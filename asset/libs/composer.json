@@ -1,0 +1,7 @@
+{
+    "require": {
+        "ramsey/uuid": "^4.2",
+        "ckeditor/ckeditor": "^4.18",
+        "mpdf/mpdf": "^6.1"
+    }
+}

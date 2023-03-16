@@ -35,7 +35,7 @@
     <title>Buku Tamu - Hotel Sarah Juli</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="assets/img/icon.png" type="image/x-icon">
+    <link rel="icon" href="assets/img/hotel.png" type="image/x-icon">
 
     <!-- Custom fonts for this template-->
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">

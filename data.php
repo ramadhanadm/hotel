@@ -12,15 +12,7 @@
                 <a href="dashboard.php" class="btn btn-danger form-control"><i class="fa fa-backward">
                 </i> Kembali</a>
             </div>
-
-            <?php 
-                // menampilkan tanggal kemarin
-                $kemarin = date('Y-m-d', strtotime('-1 day', strtotime(date('Y-m-d'))));
-
-                // deklarasi tanggal
-                $kemarin = mysqli_fetch_array(mysqli_query($koneksi, "SELECT count(*) FROM ttamu where tanggal like '%$kemarin%'"));
-            ?>
-
+            
             <div class="table-responsive">
                 <table class="table table-bordered text-center" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -37,11 +29,18 @@
                     </thead>
                     <tbody>
                         <?php
+                            // menampilkan tanggal kemarin
+                            $kemarin = date('Y-m-d', strtotime('-1 day', strtotime(date('Y-m-d'))));
+
+                            // deklarasi tanggal
+                            $kemarin = mysqli_fetch_array(mysqli_query($koneksi, "SELECT count(*) FROM ttamu where tanggal like '%$kemarin%'"));
+
                             $tgl = date('Y-m-d');
-                            $tampil = mysqli_query($koneksi,"SELECT * FROM ttamu where tanggal like '%$tgl%' order by id desc");
+                            $tampil = mysqli_query($koneksi,"SELECT * FROM ttamu where tanggal like '%$tgl%' order by id asc");
                             $no = 1;
                             $kode = 1;
-                                while($data = mysqli_fetch_array($tampil)){
+
+                            while($data = mysqli_fetch_array($tampil)){
                         ?>
                         <tr>
                             <td><?= $no++ ?></td>
@@ -50,7 +49,7 @@
                             <td><?= $data['kamar'] ?></td>
                             <td><?= $data['tanggal'] ?></td>
                             <td><?= $data['keluar'] ?></td>
-                            <td><?= $data['tagihan'] ?></td>
+                            <td>Rp. <?= $data['tagihan'] ?></td>
                             <td>
                                 <a href="cek.php?id=<?= $data['id'] ?>" target="_blank" class="btn btn-primary mb-3"><i class="fa fa-search"></i> Cek </a>
                                 <a href="cetak.php?id=<?= $data['id'] ?>" target="_blank" class="btn btn-danger mb-3"><i class="fa fa-print"></i> Print </a>

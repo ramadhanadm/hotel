@@ -1,5 +1,8 @@
 <?php include "koneksi.php";
 
+// set waktu
+date_default_timezone_set("Asia/Jakarta");
+
 ?>
 
 <style>
@@ -34,11 +37,19 @@
         </div>
         <div class="main">
         <?php
+            // menampilkan tanggal kemarin
+            $kemarin = date('Y-m-d', strtotime('-1 day', strtotime(date('Y-m-d'))));
+
+            // deklarasi tanggal
+            $kemarin = mysqli_fetch_array(mysqli_query($koneksi, "SELECT count(*) FROM ttamu where tanggal like '%$kemarin%'"));
+
             $tgl = date('Y-m-d');
             $id = $_GET["id"];
             $tampil = mysqli_query($koneksi,"SELECT * FROM ttamu WHERE id = $id");
             $no = 1;
-                    while($data = mysqli_fetch_array($tampil)){
+            $kode = 1;
+
+            while($data = mysqli_fetch_array($tampil)){
         ?>
             <table class="table" style="margin-top: 40px;" cellpadding = "5">
                 <tr>
@@ -59,7 +70,7 @@
                 </tr>
                 <tr>
                     <td style="font-size: 18px; font-weight: bold">Kode Bill </td>
-                    <td style="font-size: 18px;">: <?= $data['bill'] ?></td>
+                    <td style="font-size: 18px;">: <?= $kemarin[0] ?><?= $data['bill'] ?> / <?= $kode++ ?></td>
                 </tr>
             </table>
             <?php } ?>
@@ -90,7 +101,7 @@
                         <td><?= $data['tipe'] ?></td>
                         <td><?= $data['tarif'] ?></td>
                         <td><?= $data['lama'] ?></td>
-                        <td><?= $data['tagihan'] ?></td>
+                        <td>Rp. <?= $data['tagihan'] ?></td>
                     </tr>
                     <!-- <tr style="font-weight: bold;">
                         <td style="text-align: right;" colspan="4">Loundry :</td>
@@ -106,7 +117,7 @@
                     </tr> -->
                     <tr style="font-weight: bold;">
                         <td style="text-align: right; font-size: 20px" colspan="4">Total Tagihan =</td>
-                        <td style="font-size: 20px;"><?= $data['tagihan'] ?></td>
+                        <td style="font-size: 20px;">Rp. <?= $data['tagihan'] ?></td>
                     </tr>
                     <?php } ?>
                 </tbody>

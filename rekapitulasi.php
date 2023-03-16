@@ -69,17 +69,24 @@
                         <br>
                         <tbody>
                             <?php
+                                // menampilkan tanggal kemarin
+                                $kemarin = date('Y-m-d', strtotime('-1 day', strtotime(date('Y-m-d'))));
+
+                                // deklarasi tanggal
+                                $kemarin = mysqli_fetch_array(mysqli_query($koneksi, "SELECT count(*) FROM ttamu where tanggal like '%$kemarin%'"));
+
                                 $tgl1 = $_POST['tanggal1'];
                                 $tgl2 = $_POST['tanggal2'];
                                 
-                                $tampil = mysqli_query($koneksi,"SELECT * FROM ttamu where tanggal BETWEEN '$tgl1' and '$tgl2' order by id desc");
+                                $tampil = mysqli_query($koneksi,"SELECT * FROM ttamu where tanggal BETWEEN '$tgl1' and '$tgl2' order by id asc");
                                 $no = 1;
+                                $kode = 1;
 
                                 while($data = mysqli_fetch_array($tampil)){
                             ?>
                         <tr>
                             <td><?= $no++ ?></td>
-                            <td><?= $data['bill'] ?></td>
+                            <td><?= $kemarin[0] ?><?= $data['bill'] ?> / <?= $kode++ ?></td>
                             <td><?= $data['nama'] ?></td>
                             <td><?= $data['nik'] ?></td>
                             <td><?= $data['alamat'] ?></td>
@@ -90,7 +97,7 @@
                             <td><?= $data['tarif'] ?></td>
                             <td><?= $data['tanggal'] ?></td>
                             <td><?= $data['keluar'] ?></td>
-                            <td><?= $data['tagihan'] ?></td>
+                            <td>Rp. <?= $data['tagihan'] ?></td>
                             <td><?= $data['jenis'] ?></td>
                         </tr>
                             <?php } ?>
@@ -100,8 +107,8 @@
                     <center>
                         <form method="POST" action="exportexcel.php">
                             <div class="row">
-                            <div class="col-md-3"></div>
-                                <div class="col-md-3">
+                            <div class="col-md-4"></div>
+                                <div class="col-md-4">
                                     <input type="hidden" name="tanggala" value="<?= @$_POST['tanggal1'] ?>">
                                     <input type="hidden" name="tanggalb" value="<?= @$_POST['tanggal2'] ?>">
                                     <button class="btn btn-success form-control" name="bexport"><i class="fa fa-download"></i> 
@@ -109,10 +116,15 @@
                                 </div>
                             </div>
                         </form>
-                        <form method="POST" action="print.php" target="_blank">
-                            <div class="row" style="margin-top: -38px;">
-                            <div class="col-md-6"></div>
-                                <div class="col-md-3">
+                        
+                    </center>
+                    
+                    <br>
+                    
+                    <form method="POST" action="print.php" target="_blank">
+                            <div class="row" style="margin-top: -7px;">
+                            <div class="col-md-4"></div>
+                                <div class="col-md-4">
                                     <input type="hidden" class="form-control" name="tanggal1" value="<?= isset($_POST['tanggal1'])? 
                                     $_POST['tanggal1']: date('d-m-Y') ?>">
                                     <input type="hidden" name="tanggala" value="<?= @$_POST['tanggal1'] ?>">
@@ -122,7 +134,7 @@
                                 </div>
                             </div>
                         </form>
-                    </center>
+                    
                     <br>
                     <br>
                 </div>

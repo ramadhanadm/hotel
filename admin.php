@@ -28,7 +28,8 @@ if(isset($_POST['simpan'])) {
     //Uji Jika Simpan Data Sukses
     if ($simpan) {
         echo "<script>alert('Simpan data Sukses, Terima kasih..!');
-            document.location='?'</script>";
+            document.location='data.php';
+            </script>";
     } else {
         echo "<script>alert('Simpan data Gagal !!!');
         document.location='?'</script>";
@@ -92,6 +93,13 @@ if(isset($_POST['simpan'])) {
                                                 <option value="Sales">Sales</option>                                                                  
                                             </select>
                                         </div>
+                                        <div class="form-group"> Jenis Pembayaran :
+                                            <select class="form-control form-select" name="jenis" aria-label="Default select example" required>
+                                                <option selected value="">-- Pilih Salah Satu --</option>
+                                                <option value="Tunai">Tunai</option>
+                                                <option value="Transfer Bank">Transfer Bank</option>                                                                  
+                                            </select>
+                                        </div>
                                     </div>
 
                                     <div class="col-md-6">
@@ -110,7 +118,15 @@ if(isset($_POST['simpan'])) {
                                             </select>
                                         </div>
                                         <div class="form-group"> Tarif Kamar :
-                                            <input type="number" class="form-control form-control-user" name="tarif" placeholder="Tarif Kamar" autocomplete="off" required>
+                                            <select class="form-control form-select" name="tarif" aria-label="Default select example" required>
+                                                <option selected value="">-- Pilih Salah Satu --</option>
+                                                <option value="Rp. 200.000">Ekonomi - Rp. 200.000</option>
+                                                <option value="Rp. 250.000">Standard - Rp. 250.000</option>                                                                  
+                                                <option value="Rp. 300.000">Superrior - Rp. 300.000</option>
+                                                <option value="Rp. 350.000">Family Room - Rp. 350.000</option>
+                                                <option value="Rp. 400.000">Deluxe - Rp. 400.000</option>                                                                  
+                                                <option value="Rp. 450.000">Triple Room - Rp. 450.000</option>                                                                   
+                                            </select>
                                         </div>
                                         <div class="form-group"> Tanggal Masuk :
                                             <input type="date" class="form-control form-control-user" name="tanggal" placeholder="Tanggal Masuk" autocomplete="off" 
@@ -144,19 +160,17 @@ if(isset($_POST['simpan'])) {
                                                 return (((sign)?'':'-') + 'Rp.' + saldo + ',' + cents);
                                             }
                                         </script> -->
-                                        <div class="form-group"> Jenis Pembayaran :
-                                            <select class="form-control form-select" name="jenis" aria-label="Default select example" required>
-                                                <option selected value="">-- Pilih Salah Satu --</option>
-                                                <option value="Tunai">Tunai</option>
-                                                <option value="Transfer Bank">Transfer Bank</option>                                                                  
-                                            </select>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                                 <br>
-                                <button type="submit" name="simpan" class="btn btn-primary btn-user btn-block ">
-                                Simpan Data</button>
-                                
+                                <div class="row">
+                                <div class="col-md-3"></div>
+                                    <div class="col-md-6">
+                                        <button type="submit" name="simpan" class="btn btn-primary btn-user btn-block ">
+                                        Simpan Data</button>
+                                    </div>
+                                </div>
                             </form>
                             
                             <hr>

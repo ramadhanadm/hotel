@@ -1,5 +1,8 @@
 <?php include "koneksi.php";
 
+// set waktu
+date_default_timezone_set("Asia/Jakarta");
+
 ?>
 
 <style>
@@ -34,16 +37,24 @@
         </div>
         <div class="main">
         <?php
+            // menampilkan tanggal kemarin
+            $kemarin = date('Y-m-d', strtotime('-1 day', strtotime(date('Y-m-d'))));
+
+            // deklarasi tanggal
+            $kemarin = mysqli_fetch_array(mysqli_query($koneksi, "SELECT count(*) FROM ttamu where tanggal like '%$kemarin%'"));
+
             $tgl = date('Y-m-d');
             $id = $_GET["id"];
             $tampil = mysqli_query($koneksi,"SELECT * FROM ttamu WHERE id = $id");
             $no = 1;
-                    while($data = mysqli_fetch_array($tampil)){
+            $kode = 1;
+
+            while($data = mysqli_fetch_array($tampil)){
         ?>
             <table class="table" border="3 solid black" style="margin-top: 40px; margin-bottom: 100px; margin-left: 110px; font-size: 25;" cellspacing="5" cellpadding = "10">
                 <tr>
                     <td style="font-weight: bold; width: 250px">Kode Bill </td>
-                    <td style="width: 800px">: <?= $data['bill'] ?></td>
+                    <td style="width: 800px">: <?= $kemarin[0] ?><?= $data['bill'] ?> / <?= $kode++ ?></td>
                 </tr>
                 <tr>
                     <td style="font-weight: bold; width: 250px">Nama </td>
@@ -87,7 +98,7 @@
                 </tr>
                 <tr>
                     <td style=" font-weight: bold">Total Pembayaran </td>
-                    <td style="">: <?= $data['tagihan'] ?></td>
+                    <td style="">: Rp. <?= $data['tagihan'] ?></td>
                 </tr>
                 <tr>
                     <td style=" font-weight: bold">Jenis Pembayaran </td>

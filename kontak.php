@@ -41,7 +41,7 @@
                     <a href=""><span class="text-primary"><b>Hotel Sarah Juli</b></span></a>
                 </li>
                 <li>
-                    <a href="#">Beranda</a>
+                    <a href="dashboard.php">Beranda</a>
                 </li>
                 <li>
                     <a href="admin.php">Tambah Data</a>
@@ -65,83 +65,50 @@
         </div>
         <!-- /#sidebar-wrapper -->
 
-            
-
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <div class="head text-center mt-1">
-                <img src="assets/img/image.png" alt="logo" width="500px" style="margin-top: -70px;">
-            </div>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-12" style="margin-top: -127px;">
-                        <h1>Selamat Datang</h1>
-                        <h5>Silakan pakai dan gunakan aplikasi buku tamu ini dengan baik ya...!</h5>
+                    <div class="col-lg-12">
+                        <h1>Kontak Kami</h1>
+                        <h5>Silakan hubungi kontak di bawah ini jika terjadi kendala saat menggunakan aplikasi buku tamu.</h5>
                         <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Slide bar</a>
                     </div>
                 </div>
             </div>
 
             <!-- Start Head -->
-            <div class="head text-center mb-5" style="margin-top: -10px;">
-                <h2 class="text-black">Sistem Informasi Buku Tamu <br>Hotel Sarah Juli </h2>
-                <h4 class="text-black">Tahun <?=date('Y') ?></h4>
+            <div class="head text-center mb-5">
+                <!-- <img src="assets/img/logo.png" alt="logo" width="300px" style="margin-top: 30px;"> -->
+                <h2 class="text-black">HOTEL SARAH JULI </h2>
+                <h3 class="text-black">Jl. Kolonel Muhammaddin No. 54 Kec. Blangkejeren Kab. Gayo Lues - 24653 <br>No. Telp : 085261532055 </h3>
+                <!-- <h4 class="text-black">Tahun <?=date('Y') ?></h4> -->
             </div>
             <!-- End Head -->
 
             <!-- Start Statistik -->
             <div class="row mt-5">
-                <div class="col-lg-12 mb-1">
+                <div class="col-lg-12 mb-5">
                     <div class="card shadow bg-gradient-info">
                         <div class="card card-body">
-                            <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">STATISTIK PENGUNJUNG</h1>
-                            </div>
-                            <?php
-                            // deklarasi tanggal
-                            
-                            // menampilkan tanggal sekarang
-                            $tgl_sekarang = date('Y-m-d');
-
-                            // menampilkan tanggal kemarin
-                            $kemarin = date('Y-m-d', strtotime('-1 day', strtotime(date('Y-m-d'))));
-
-                            // menampilkan satu minggu
-                            $seminggu = date('Y-m-d h:i:s', strtotime('-1 week +1 day', strtotime($tgl_sekarang)));
-
-                            $sekarang = date('Y-m-d h:i:s');
-
-                            // menampilkan satu bulan
-                            $bulan_ini = date('m');
-
-                            // jumlah total
-                            $tgl_sekarang = mysqli_fetch_array(mysqli_query($koneksi, "SELECT count(*) FROM ttamu where tanggal like '%$tgl_sekarang%'"));
-
-                            $kemarin = mysqli_fetch_array(mysqli_query($koneksi, "SELECT count(*) FROM ttamu where tanggal like '%$kemarin%'"));
-
-                            $seminggu = mysqli_fetch_array(mysqli_query($koneksi, "SELECT count(*) FROM ttamu where tanggal BETWEEN '%$seminggu%' AND '$sekarang'"));
-
-                            $sebulan = mysqli_fetch_array(mysqli_query($koneksi, "SELECT count(*) FROM ttamu where month(tanggal) = '$bulan_ini'"));
-
-                            $keseluruhan = mysqli_fetch_array(mysqli_query($koneksi, "SELECT count(*) FROM ttamu"));
-
-                            
-                            ?>
-                            <table class="table table-bordered text-center">
+                            <!-- <div class="text-center">
+                                <h1 class="h4 text-gray-900 mb-3" style="font-weight: bold; margin-top: -3px;">Kontak</h1>
+                            </div> -->
+                            <table class="table text-center" style="margin-bottom: -5px;">
                                 <thead>
-                                    <tr>
-                                        <th style="text-align: center;">Hari ini</th>
-                                        <th style="text-align: center;">Kemarin</th>
-                                        <th style="text-align: center;">Bulan ini</th>
-                                        <th style="text-align: center;">Keseluruhan</th>
+                                    <tr style="font-size: 20px; font-weight: bold;">
+                                        <th style="text-align: center;">Customer Service</th>
+                                        <th style="text-align: center;">Technical Support</th>
                                     </tr>
                                 </thead>
-                                <tbody style="font-size: 20px; font-weight: bold;">
-                                    <tr>
-                                        <td><?= $tgl_sekarang[0] ?></td>
-                                        <td><?= $kemarin[0] ?></td>
-                                        <td><?= $sebulan[0] ?></td>
-                                        <td><?= $keseluruhan[0] ?></td>
+                                <tbody>
+                                    <tr style="font-size: 17px;">
+                                        <td><img src="assets/img/hotel.png" alt="" width="150px" style="margin-bottom: 10px;"><br> Oktavia Rahsa</td>
+                                        <td><img src="asset/profil.jpg" alt="" width="150px" style="border-radius: 50%; margin-bottom: 10px;"> <br> Ramadhana</td>
+                                    </tr>
+                                    <tr style="font-size: 22px; font-weight: bold;">
+                                        <td>0852-4798-4331</td>
+                                        <td>0812-2764-8127</td>
                                     </tr>
                                 </tbody>
                             </table>
